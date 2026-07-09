@@ -1,5 +1,5 @@
 Instance: AnCapabilityStatement
-InstanceOf: CapabilityStatement 
+InstanceOf: HnzToolingCapabilityStatement 
 Description: "Server capability statement"
 Usage: #definition
 
@@ -13,6 +13,28 @@ Usage: #definition
 * fhirVersion = #4.0.1
 * format = #json
 * rest.mode = #server
+
+* contact[+].name = "Health New Zealand Te Whatu Ora"
+* contact[=].telecom.value = "https://www.tewhatuora.govt.nz"
+* contact[=].telecom.system = #url
+
+* implementation.description = "Health NZ | Te Whatu Ora ACT NOW API"
+* implementation.url = "https://fhir.api.digital.health.nz/R4"
+* version = "1.0.0"
+
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].url = Canonical(HnzCustomHeadersExtension)
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[key].valueString = "X-Correlation-Id"
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[value].valueUri = "https://raw.githubusercontent.com/tewhatuora/schemas/main/shared-care/Correlation-Id.json"
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[required].valueBoolean = false
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].extension[key].valueString = "Request-Context"
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[value].valueUri = "https://raw.githubusercontent.com/tewhatuora/schemas/main/shared-care/Request-Context.json"
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[required].valueBoolean = true
+* extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[documentation].valueString = """A base64-encoded JSON object that defines the context of the current request.
+See https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-v2.json for the schema this object must conform to.
+"""
+* extension[HnzApiSpecBuilderExtension].extension[licenseURL].valueUri = "https://www.tewhatuora.govt.nz/assets/Our-health-system/Digital-health/Digital-Service-Hub/API-Access-and-Use-Agreement.docx"
+* extension[HnzApiSpecBuilderExtension].extension[licenseName].valueString = "Health New Zealand Digital Services Hub API Access and Use Agreement"
+* extension[HnzApiSpecBuilderExtension].extension[externalDocs].valueUri = "https://fhir-ig.digital.health.nz/actnow"
 
 * rest.interaction[+].code = #transaction
 
@@ -122,3 +144,9 @@ Usage: #definition
 //* rest.resource[=].conditionalDelete = true
 * rest.resource[=].searchParam[+].name = "identifier"
 * rest.resource[=].searchParam[=].type = #token
+
+* rest.resource[+].type = #QuestionnaireResponse
+* rest.resource[=].interaction[+].code = #read
+* rest.resource[=].interaction[+].code = #create
+* rest.resource[=].interaction[+].code = #search-type
+* rest.resource[=].conditionalCreate = true
