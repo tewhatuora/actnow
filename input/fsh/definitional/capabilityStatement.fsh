@@ -4,8 +4,8 @@ Description: "Server capability statement"
 Usage: #definition
 
 * name = "CanShareCapabilityStatement"
-* title = "CapabilityStatement representing the server requirements for a FHIR server"
-* description = "Describes the server requirements for ACT-NOW"
+* title = "ACT-NOW Capability Statement"
+* description = "ACT-NOW capability statement"
 * status = #draft
 * date = "2022-10-03"
 * publisher = "David Hay"
@@ -21,6 +21,17 @@ Usage: #definition
 * implementation.description = "Health NZ | Te Whatu Ora ACT NOW API"
 * implementation.url = "https://fhir.api.digital.health.nz/R4"
 * version = "1.0.0"
+
+* rest.security.cors = true
+* rest.security.service = #SMART-on-FHIR
+* rest.security.description = "OAuth 2.0 - Client Credential flow."
+* rest.security.extension.url = "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"
+* rest.security.extension.extension[0].url = "token"
+* rest.security.extension.extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
+* rest.security.extension.extension[+].url = "authorize"
+* rest.security.extension.extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/authorize"
+* rest.security.extension[+].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities"
+* rest.security.extension[=].valueCode = #client-confidential-symmetric
 
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].url = Canonical(HnzCustomHeadersExtension)
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[key].valueString = "X-Correlation-Id"
