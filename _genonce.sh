@@ -6,7 +6,7 @@ curl -sSf tx.fhir.org > /dev/null
 
 if [ $? -eq 0 ]; then
 	echo "Online"
-	txoption=""
+	txoption="-authorise-non-conformant-tx-servers"
 else
 	echo "Offline"
 	txoption="-tx n/a"
@@ -14,16 +14,18 @@ fi
 
 echo "$txoption"
 
-export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Dfile.encoding=UTF-8"
+#export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Dfile.encoding=UTF-8"
+#export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Dfile.encoding=UTF-8 -Djavax.net.ssl.trustAll=true -Dcom.sun.net.ssl.checkRevocation=false"
+export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Dfile.encoding=UTF-8 -Djavax.net.ssl.trustStoreType=Windows-ROOT"
 
 publisher=$input_cache_path/$publisher_jar
 if test -f "$publisher"; then
-	java -jar $publisher -ig . $txoption $*
+	java -jar $publisher -ig . $txoption $* $publish_option -authorise-non-conformant-tx-servers
 
 else
 	publisher=../$publisher_jar
 	if test -f "$publisher"; then
-		java -jar $publisher -ig . $txoption $*
+		java -jar $publisher -ig . $txoption $*  $publish_option -authorise-non-conformant-tx-servers
 	else
 		echo IG Publisher NOT FOUND in input-cache or parent folder.  Please run _updatePublisher.  Aborting...
 	fi

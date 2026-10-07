@@ -2,7 +2,7 @@
   "resourceType": "ImplementationGuide",
   "id": "actnow.canshare.co.nz",
   "url": "http://canshare.co.nz/fhir/ImplementationGuide/actnow.canshare.co.nz",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "name": "Actnow",
   "title": "ACT-NOW Implementation Guide",
   "status": "draft",
@@ -40,10 +40,24 @@
       "packageId": "hl7.fhir.us.mcode",
       "version": "4.0.0",
       "uri": "http://hl7.org/fhir/us/mcode/ImplementationGuide/hl7.fhir.us.mcode"
+    },
+    {
+      "packageId": "tewhatuora.digitaltooling",
+      "version": "0.0.11",
+      "uri": "https://fhir-ig.digital.health.nz/hnz-digital-tooling/ImplementationGuide/tewhatuora.digitaltooling",
+      "id": "tewhatuora_digitaltooling"
     }
   ],
   "definition": {
     "resource": [
+      {
+        "reference": {
+          "reference": "CapabilityStatement/AnCapabilityStatement"
+        },
+        "name": "ACT-NOW Capability Statement",
+        "description": "Server capability statement",
+        "exampleBoolean": false
+      },
       {
         "reference": {
           "reference": "StructureDefinition/an-condition"
@@ -107,14 +121,6 @@
         "name": "bsa",
         "description": "Example of a BSA observation. This is a simple example that only includes the required elements and a few optional ones. It is not meant to be a comprehensive example of all the possible elements that could be included in a BSA observation.",
         "exampleCanonical": "http://canshare.co.nz/fhir/StructureDefinition/an-bsa"
-      },
-      {
-        "reference": {
-          "reference": "CapabilityStatement/AnCapabilityStatement"
-        },
-        "name": "CapabilityStatement representing the server requirements for a FHIR server",
-        "description": "Server capability statement",
-        "exampleBoolean": false
       },
       {
         "reference": {

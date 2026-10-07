@@ -9,7 +9,7 @@ name: Actnow
 title: ACT-NOW Implementation Guide
 description: FHIR support for the New Zealand ACT-NOW standard
 status: draft # draft | active | retired | unknown
-version: 0.5.0
+version: 0.6.0
 fhirVersion: 4.0.1 
 copyrightYear: 2022+
 jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
@@ -29,6 +29,7 @@ dependencies:
     id: mcode
     #version: 2.0.0
     version: 4.0.0
+  tewhatuora.digitaltooling: 0.0.11  
 
 parameters:
   special-url:
@@ -72,6 +73,7 @@ menu:
   Artifacts: artifacts.html
   # Reference Implementation: reference-implementation.html
   Support:
+    Download OpenAPI: https://fhir-ig.digital.health.nz/tbc/openapi.yaml
     Download IG: full-ig.zip
     FHIR Spec: http://hl7.org/fhir/R4/index.html
     Artifacts (Json): definitions.json.zip

@@ -33,7 +33,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 echo "Checking internet connection"
-curl -sSf tx.fhir.org > /dev/null
+curl --ssl-no-revoke -sSf tx.fhir.org > /dev/null
 
 if [ $? -ne 0 ] ; then
   echo "Offline (or the terminology server is down), unable to update.  Exiting"
@@ -92,7 +92,7 @@ fi
 if [[ $skipPrompts == true ]] || [[ $response =~ ^[yY].*$ ]]; then
 
 	echo "Downloading most recent publisher to $jarlocationname - it's ~100 MB, so this may take a bit"
-	curl -L $dlurl -o "$jarlocation" --create-dirs
+	curl --ssl-no-revoke -L $dlurl -o "$jarlocation" --create-dirs
 else
 	echo cancelled publisher update
 fi
@@ -105,39 +105,39 @@ if [[ $skipPrompts != true ]]; then
 if [[ $skipPrompts == true ]] || [[ $response =~ ^[yY].*$ ]]; then
   echo "Downloading most recent scripts "
 
-  curl -L $build_bat_url -o /tmp/_build.new
+  curl --ssl-no-revoke -L $build_bat_url -o /tmp/_build.new
   cp /tmp/_build.new _build.bat
   rm /tmp/_build.new
 
 
-  curl -L $build_sh_url -o /tmp/_build.new
+  curl --ssl-no-revoke -L $build_sh_url -o /tmp/_build.new
   cp /tmp/_build.new _build.sh
   chmod +x _build.sh
   rm /tmp/_build.new
 
-  curl -L $update_bat_url -o /tmp/_updatePublisher.new
+  curl --ssl-no-revoke -L $update_bat_url -o /tmp/_updatePublisher.new
   cp /tmp/_updatePublisher.new _updatePublisher.bat
   rm /tmp/_updatePublisher.new
 
-  curl -L $gen_bat_url -o /tmp/_genonce.new
+  curl --ssl-no-revoke -L $gen_bat_url -o /tmp/_genonce.new
   cp /tmp/_genonce.new _genonce.bat
   rm /tmp/_genonce.new
 
-  curl -L $gencont_bat_url -o /tmp/_gencontinuous.new
+  curl --ssl-no-revoke -L $gencont_bat_url -o /tmp/_gencontinuous.new
   cp /tmp/_gencontinuous.new _gencontinuous.bat
   rm /tmp/_gencontinuous.new
 
-  curl -L $gencont_sh_url -o /tmp/_gencontinuous.new
+  curl --ssl-no-revoke -L $gencont_sh_url -o /tmp/_gencontinuous.new
   cp /tmp/_gencontinuous.new _gencontinuous.sh
   chmod +x _gencontinuous.sh
   rm /tmp/_gencontinuous.new
 
-  curl -L $gen_sh_url -o /tmp/_genonce.new
+  curl --ssl-no-revoke -L $gen_sh_url -o /tmp/_genonce.new
   cp /tmp/_genonce.new _genonce.sh
   chmod +x _genonce.sh
   rm  /tmp/_genonce.new
 
-  curl -L $update_sh_url -o /tmp/_updatePublisher.new
+  curl --ssl-no-revoke -L $update_sh_url -o /tmp/_updatePublisher.new
   cp /tmp/_updatePublisher.new _updatePublisher.sh
   chmod +x _updatePublisher.sh
   rm /tmp/_updatePublisher.new
