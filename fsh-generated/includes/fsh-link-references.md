@@ -1,3 +1,4 @@
+[AnCapabilityStatement]: CapabilityStatement-AnCapabilityStatement.html
 [AnCondition]: StructureDefinition-an-condition.html
 [AnMedicationAdministration]: StructureDefinition-an-medication-administration.html
 [AnMedicationRequest]: StructureDefinition-an-medication-request.html
@@ -6,7 +7,6 @@
 [DxBasis]: ValueSet-an-dx-basis-vs.html
 [ObservationBSA]: StructureDefinition-an-bsa.html
 [bsa]: Observation-bsa.html
-[AnCapabilityStatement]: CapabilityStatement-AnCapabilityStatement.html
 [careplan-regimen-1]: CarePlan-careplan-regimen-1.html
 [careplan-regimen-2]: CarePlan-careplan-regimen-2.html
 [AnCM]: ValueSet-an-tnm-cm.html
