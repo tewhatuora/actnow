@@ -1,7 +1,7 @@
 
 ### Description
 
-The [ACT-NOW specification](https://consult.health.govt.nz/hiso/act-now-data-standard/supporting_documents/HISO10095ACTNOWDataStandarddraftforpubliccomment.pdf) describes the data collection for oncology treatment in New Zealand, particularly medication administration. 
+The [Systemic Anti-Cancer Therapy (SACT) data standard](https://consult.health.govt.nz/hiso/act-now-data-standard/supporting_documents/HISO10095ACTNOWDataStandarddraftforpubliccomment.pdf) describes the data collection for oncology treatment in New Zealand, particularly medication administration. 
 
 This Guide describes how this data could be represented as FHIR resources, and collected from care delivery systems into a FHIR server for subsequent use such as Analytics and Care delivery.
 
@@ -24,7 +24,7 @@ There are a number of sections to the Guide, represented as tabs at the top of t
 * [Extensions](extensions.html) is a summary of extensions
 * [Profiles](profiles.html) lists the profiles defined here
 * [Terminology](terminology.html) contains ValueSets needed by the profiles & extensions 
-* The [Reference Implementation](reference-implementation.html) describes applications that have been created to assist with development and demonstrate the kinds of interface that could be built with the ACT-NOW data
+* The [Reference Implementation](reference-implementation.html) describes applications that have been created to assist with development and demonstrate the kinds of interface that could be built with the SACT data
 * And finally the Support tab allows downloading of this guide and all the artifacts defined as computable resources in a number of formats, as well as a link to the main [FHIR specification](http://hl7.org/fhir/index.html).
 
 ### Version
