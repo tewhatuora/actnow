@@ -1,10 +1,77 @@
 {
   "resourceType": "CapabilityStatement",
   "id": "AnCapabilityStatement",
+  "meta": {
+    "profile": [
+      "https://fhir-ig.digital.health.nz/hnz-digital-tooling/StructureDefinition/hnz-capability-statement"
+    ]
+  },
   "url": "http://canshare.co.nz/fhir/CapabilityStatement/AnCapabilityStatement",
-  "description": "Describes the server requirements for ACT-NOW",
+  "description": "ACT-NOW capability statement",
+  "extension": [
+    {
+      "url": "https://fhir-ig.digital.health.nz/hnz-digital-tooling/StructureDefinition/resource-metadata-extension",
+      "extension": [
+        {
+          "url": "licenseURL",
+          "valueUri": "https://www.tewhatuora.govt.nz/assets/Our-health-system/Digital-health/Digital-Service-Hub/API-Access-and-Use-Agreement.docx"
+        },
+        {
+          "url": "externalDocs",
+          "valueUri": "https://fhir-ig.digital.health.nz/actnow"
+        },
+        {
+          "url": "licenseName",
+          "valueString": "Health New Zealand Digital Services Hub API Access and Use Agreement"
+        },
+        {
+          "extension": [
+            {
+              "url": "https://fhir-ig.digital.health.nz/hnz-digital-tooling/StructureDefinition/custom-headers-extension",
+              "extension": [
+                {
+                  "url": "key",
+                  "valueString": "X-Correlation-Id"
+                },
+                {
+                  "url": "value",
+                  "valueUri": "https://raw.githubusercontent.com/tewhatuora/schemas/main/shared-care/Correlation-Id.json"
+                },
+                {
+                  "url": "required",
+                  "valueBoolean": false
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "key",
+                  "valueString": "Request-Context"
+                },
+                {
+                  "url": "value",
+                  "valueUri": "https://raw.githubusercontent.com/tewhatuora/schemas/main/shared-care/Request-Context.json"
+                },
+                {
+                  "url": "required",
+                  "valueBoolean": true
+                },
+                {
+                  "url": "documentation",
+                  "valueString": "A base64-encoded JSON object that defines the context of the current request.\nSee https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-v2.json for the schema this object must conform to."
+                }
+              ],
+              "url": "https://fhir-ig.digital.health.nz/hnz-digital-tooling/StructureDefinition/custom-headers-extension"
+            }
+          ],
+          "url": "globalHeaders"
+        }
+      ]
+    }
+  ],
   "name": "CanShareCapabilityStatement",
-  "title": "CapabilityStatement representing the server requirements for a FHIR server",
+  "title": "ACT-NOW Capability Statement",
   "status": "draft",
   "date": "2022-10-03",
   "publisher": "David Hay",
@@ -16,6 +83,38 @@
   "rest": [
     {
       "mode": "server",
+      "security": {
+        "cors": true,
+        "service": [
+          {
+            "coding": [
+              {
+                "code": "SMART-on-FHIR"
+              }
+            ]
+          }
+        ],
+        "description": "OAuth 2.0 - Client Credential flow.",
+        "extension": [
+          {
+            "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris",
+            "extension": [
+              {
+                "url": "token",
+                "valueUri": "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
+              },
+              {
+                "url": "authorize",
+                "valueUri": "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/authorize"
+              }
+            ]
+          },
+          {
+            "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities",
+            "valueCode": "client-confidential-symmetric"
+          }
+        ]
+      },
       "interaction": [
         {
           "code": "transaction"
@@ -138,8 +237,39 @@
               "type": "token"
             }
           ]
+        },
+        {
+          "type": "QuestionnaireResponse",
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "conditionalCreate": true
         }
       ]
     }
-  ]
+  ],
+  "contact": [
+    {
+      "name": "Health New Zealand Te Whatu Ora",
+      "telecom": [
+        {
+          "value": "https://www.tewhatuora.govt.nz",
+          "system": "url"
+        }
+      ]
+    }
+  ],
+  "implementation": {
+    "description": "Health NZ | Te Whatu Ora ACT NOW API",
+    "url": "https://fhir.api.digital.health.nz/R4"
+  },
+  "version": "1.0.0"
 }
